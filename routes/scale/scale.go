@@ -22,6 +22,15 @@ var pathCSV string
 //AddScale Adiciona uma escala na lista de escalas disponíveis para consulta
 func AddScale(scale TypeScale) error {
 	Scales = append(Scales, scale)
+
+	if err := saveInFile(scale); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func saveInFile(scale TypeScale) error {
 	var err error
 	csvFile, err := os.OpenFile(pathCSV, os.O_RDWR|os.O_APPEND|os.O_CREATE, os.ModeAppend)
 	if err != nil {

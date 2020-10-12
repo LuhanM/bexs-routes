@@ -25,13 +25,14 @@ func SplitRoute(route string) (origin, destination string, err error) {
 	return dePara[0], dePara[1], nil
 }
 
-func (route *Route) addStep(steps []string, step string) {
+func (route *Route) addStep(steps []string, step string) *Route {
 
 	route.Steps = append(steps, step)
 	if len(route.Steps) > 1 {
 		route.CompleteWay = route.CompleteWay + " - "
 	}
 	route.CompleteWay = route.CompleteWay + step
+	return route
 }
 
 //ContainsStep Retorna true caso o local pesquisado já esta na rota
